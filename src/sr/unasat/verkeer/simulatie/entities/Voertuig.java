@@ -1,22 +1,27 @@
 package sr.unasat.verkeer.simulatie.entities;
 
 public class Voertuig {
-    private int volgNr;
+    private String naam;
     private String kentekenNr;
     private int priority;
 
-    public Voertuig(int volgNr, String kentekenNr, int priority) {
-        this.volgNr = volgNr;
+    public Voertuig(String naam, String kentekenNr) {
+        this.naam = naam;
+        this.kentekenNr = kentekenNr;
+    }
+
+    public Voertuig(String naam, String kentekenNr, int priority) {
+        this.naam = naam;
         this.kentekenNr = kentekenNr;
         this.priority = priority;
     }
 
-    public int getVolgNr() {
-        return volgNr;
+    public String getNaam() {
+        return naam;
     }
 
-    public void setVolgNr(int volgNr) {
-        this.volgNr = volgNr;
+    public void setNaam(String naam) {
+        this.naam = naam;
     }
 
     public String getKentekenNr() {
@@ -37,10 +42,6 @@ public class Voertuig {
 
     @Override
     public String toString() {
-        return "Voertuig{" +
-                "volgNr=" + volgNr +
-                ", kentekenNr='" + kentekenNr + '\'' +
-                ", priority=" + priority +
-                '}';
+        return "naam=" + naam + ", kentekenNr=" + kentekenNr;
     }
 }
