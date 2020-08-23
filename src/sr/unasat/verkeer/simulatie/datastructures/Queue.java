@@ -68,4 +68,8 @@ public class Queue {
 
         return this.queArray[this.rear];
     }
+
+    public int getnItems() {
+        return nItems;
+    }
 }

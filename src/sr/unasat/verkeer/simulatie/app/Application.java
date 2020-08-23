@@ -1,121 +1,66 @@
 package sr.unasat.verkeer.simulatie.app;
 
-import sr.unasat.verkeer.simulatie.datastructures.PriorityQueue;
-import sr.unasat.verkeer.simulatie.datastructures.Queue;
-import sr.unasat.verkeer.simulatie.datastructures.Stack;
 import sr.unasat.verkeer.simulatie.entities.Voertuig;
 import sr.unasat.verkeer.simulatie.services.VerkeersSimulatieService;
 
+import static sr.unasat.verkeer.simulatie.util.Constants.WEGDEK;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Application {
     public static void main(String[] args) {
+        List<Voertuig> voertuigenNoordList = new ArrayList<>();
+        List<Voertuig> voertuigenZuidList = new ArrayList<>();
+        List<Voertuig> voertuigenOostList = new ArrayList<>();
+        List<Voertuig> voertuigenWestList = new ArrayList<>();
+
         VerkeersSimulatieService verkeersSimulatieService = new VerkeersSimulatieService();
-        List<Voertuig> voertuigenSpeciaalList = verkeersSimulatieService.fillVoertuigArray("Special", 3);
-        List<Voertuig> voertuigenNoordList = verkeersSimulatieService.fillVoertuigArray("Normal", 3);
-        List<Voertuig> voertuigenZuidList = verkeersSimulatieService.fillVoertuigArray("Normal", 17);
-        List<Voertuig> voertuigenOostList = verkeersSimulatieService.fillVoertuigArray("Normal", 5);
-        List<Voertuig> voertuigenWestList = verkeersSimulatieService.fillVoertuigArray("Normal", 13);
+        voertuigenNoordList.add(new Voertuig(WEGDEK[0], 1));
+        voertuigenNoordList.add(new Voertuig(WEGDEK[0], 2));
+        voertuigenNoordList.add(new Voertuig(WEGDEK[0], 3, "Speciaal", "Ambulance met sirene", 3));
+        voertuigenNoordList.add(new Voertuig(WEGDEK[0], 4));
 
-        PriorityQueue voertuigenSpeciaalQueue = new PriorityQueue(3);
-        Queue voertuigenNoordQueue = new Queue(3);
-        Queue voertuigenZuidQueue = new Queue(17);
-        Queue voertuigenOostQueue = new Queue(5);
-        Queue voertuigenWestQueue = new Queue(13);
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 1));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 2));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 3));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 4));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 5));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 6));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 7));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 8));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 9));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 10));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 11));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 12));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 13));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 14));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 15));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 16));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 17, "Speciaal", "Brandweer met sirene", 2));
+        voertuigenZuidList.add(new Voertuig(WEGDEK[1], 18));
 
-        Stack voertuigenSpeciaalStack = new Stack(3);
-        Stack voertuigenNoordStack = new Stack(3);
-        Stack voertuigenZuidStack = new Stack(17);
-        Stack voertuigenOostStack = new Stack(5);
-        Stack voertuigenWestStack = new Stack(13);
+        voertuigenOostList.add(new Voertuig(WEGDEK[2], 1));
+        voertuigenOostList.add(new Voertuig(WEGDEK[2], 2));
+        voertuigenOostList.add(new Voertuig(WEGDEK[2], 3));
+        voertuigenOostList.add(new Voertuig(WEGDEK[2], 4));
+        voertuigenOostList.add(new Voertuig(WEGDEK[2], 5));
 
-        for (Voertuig voertuig : voertuigenSpeciaalList) {
-            voertuigenSpeciaalQueue.insert(voertuig);
-        }
-        for (Voertuig voertuig : voertuigenNoordList) {
-            voertuigenNoordQueue.enqueue(voertuig);
-        }
-        for (Voertuig voertuig : voertuigenZuidList) {
-            voertuigenZuidQueue.enqueue(voertuig);
-        }
-        for (Voertuig voertuig : voertuigenOostList) {
-            voertuigenOostQueue.enqueue(voertuig);
-        }
-        for (Voertuig voertuig : voertuigenWestList) {
-            voertuigenWestQueue.enqueue(voertuig);
-        }
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 1));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 2));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 3));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 4));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 5));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 6));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 7));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 8));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 9, "Speciaal", "Politie met sirene", 1));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 10));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 11));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 14));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 13));
+        voertuigenWestList.add(new Voertuig(WEGDEK[3], 14));
 
-        while (!voertuigenSpeciaalQueue.isEmpty()) {
-            Voertuig voertuig = voertuigenSpeciaalQueue.remove();
-            voertuigenSpeciaalStack.push(voertuig.getNaam());
-            System.out.println(voertuig.getNaam());
-        }
-
-        System.out.println();
-
-        while (!voertuigenNoordQueue.isEmpty(voertuigenNoordQueue)) {
-            Voertuig voertuig = voertuigenNoordQueue.dequeue();
-            voertuigenNoordStack.push(voertuig.getNaam());
-            System.out.println(voertuig.getNaam());
-        }
-
-        System.out.println();
-
-        while (!voertuigenZuidQueue.isEmpty(voertuigenZuidQueue)) {
-            Voertuig voertuig = voertuigenZuidQueue.dequeue();
-            voertuigenZuidStack.push(voertuig.getNaam());
-            System.out.println(voertuig.getNaam());
-        }
-
-        System.out.println();
-
-        while (!voertuigenOostQueue.isEmpty(voertuigenOostQueue)) {
-            Voertuig voertuig = voertuigenOostQueue.dequeue();
-            voertuigenOostStack.push(voertuig.getNaam());
-            System.out.println(voertuig.getNaam());
-        }
-
-        System.out.println();
-
-        while (!voertuigenWestQueue.isEmpty(voertuigenWestQueue)) {
-            Voertuig voertuig = voertuigenWestQueue.dequeue();
-            voertuigenWestStack.push(voertuig.getNaam());
-            System.out.println(voertuig.getNaam());
-        }
-
-        System.out.println();
-
-        while (!voertuigenSpeciaalStack.isEmpty()) {
-            String item = voertuigenSpeciaalStack.pop();
-            System.out.println(item);
-        }
-
-        System.out.println();
-
-        while (!voertuigenNoordStack.isEmpty()) {
-            String item = voertuigenNoordStack.pop();
-            System.out.println(item);
-        }
-
-        System.out.println();
-
-        while (!voertuigenZuidStack.isEmpty()) {
-            String item = voertuigenZuidStack.pop();
-            System.out.println(item);
-        }
-
-        System.out.println();
-
-        while (!voertuigenOostStack.isEmpty()) {
-            String item = voertuigenOostStack.pop();
-            System.out.println(item);
-        }
-
-        System.out.println();
-
-        while (!voertuigenWestStack.isEmpty()) {
-            String item = voertuigenWestStack.pop();
-            System.out.println(item);
-        }
+        verkeersSimulatieService.prioritizeVoertuigen(voertuigenNoordList, voertuigenZuidList, voertuigenOostList, voertuigenWestList);
     }
 }
