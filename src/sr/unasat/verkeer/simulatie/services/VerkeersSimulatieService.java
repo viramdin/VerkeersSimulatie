@@ -10,11 +10,11 @@ import static sr.unasat.verkeer.simulatie.util.Constants.WEGDEK;
 import java.util.List;
 
 public class VerkeersSimulatieService {
-    PriorityQueue voertuigenSpeciaalQueue = new PriorityQueue(3);
-    Queue voertuigenNoordQueue = new Queue(4);
-    Queue voertuigenZuidQueue = new Queue(18);
-    Queue voertuigenOostQueue = new Queue(5);
-    Queue voertuigenWestQueue = new Queue(14);
+    PriorityQueue voertuigenSpeciaalQueue = new PriorityQueue();
+    Queue voertuigenNoordQueue = new Queue();
+    Queue voertuigenZuidQueue = new Queue();
+    Queue voertuigenOostQueue = new Queue();
+    Queue voertuigenWestQueue = new Queue();
 
     Stack stack = new Stack();
 
@@ -61,7 +61,7 @@ public class VerkeersSimulatieService {
 
         int teller = 0;
         for (int wegdekIndex = 0; wegdekIndex < WEGDEK.length; wegdekIndex++) {
-            if (voertuigenNoordQueue.isEmpty(voertuigenNoordQueue) && voertuigenZuidQueue.isEmpty(voertuigenZuidQueue) && voertuigenOostQueue.isEmpty(voertuigenOostQueue) && voertuigenWestQueue.isEmpty(voertuigenWestQueue)) {
+            if (voertuigenNoordQueue.isEmpty() && voertuigenZuidQueue.isEmpty() && voertuigenOostQueue.isEmpty() && voertuigenWestQueue.isEmpty()) {
                 System.out.println("Alle wegdekken zijn al leeg");
                 System.out.println("Aantal rondes om alle voertuigen op te laten rijden: " + Math.round(teller / 4));
                 System.out.println();
@@ -97,7 +97,7 @@ public class VerkeersSimulatieService {
 
     private void normaleSituatie(Queue queue) {
         for (int i = 0; i < 5; i++) {
-            if (!queue.isEmpty(queue)) {
+            if (!queue.isEmpty()) {
                 oprijden(queue);
             } else {
                 break;
@@ -113,13 +113,13 @@ public class VerkeersSimulatieService {
 
     private void sensorNoord() {
         int voertuigen = voertuigenNoordQueue.getnItems();
-        if (!voertuigenNoordQueue.isEmpty(voertuigenNoordQueue)) {
+        if (!voertuigenNoordQueue.isEmpty()) {
             System.out.println("Sensor Noord wordt geactiveerd");
             if (voertuigen < 5) {
                 System.out.println("Stoplicht Noord springt op groen");
 
                 for (int voertuigenIndex = 0; voertuigenIndex < voertuigen; voertuigenIndex++) {
-                    if (!voertuigenNoordQueue.isEmpty(voertuigenNoordQueue)) {
+                    if (!voertuigenNoordQueue.isEmpty()) {
                         oprijden(voertuigenNoordQueue);
                     } else {
                         System.out.println("Stoplicht Noord springt op rood");
@@ -135,25 +135,29 @@ public class VerkeersSimulatieService {
     }
 
     private void sensorZuid() {
-        System.out.println("Sensor Zuid wordt geactiveerd");
-        if (voertuigenZuidQueue.getnItems() > 10) {
-            System.out.println("Stoplicht Zuid springt op groen");
-            for (int voertuigenIndex = 0; voertuigenIndex < 10; voertuigenIndex++) {
-                if (!voertuigenNoordQueue.isEmpty(voertuigenZuidQueue)) {
-                    oprijden(voertuigenZuidQueue);
-                } else {
-                    System.out.println("Wegdek Zuid is leeg");
-                    break;
+        if (!voertuigenZuidQueue.isEmpty()) {
+            System.out.println("Sensor Zuid wordt geactiveerd");
+            if (voertuigenZuidQueue.getnItems() > 10) {
+                System.out.println("Stoplicht Zuid springt op groen");
+                for (int voertuigenIndex = 0; voertuigenIndex < 10; voertuigenIndex++) {
+                    if (!voertuigenZuidQueue.isEmpty()) {
+                        oprijden(voertuigenZuidQueue);
+                    } else {
+                        System.out.println("Wegdek Zuid is leeg");
+                        break;
+                    }
                 }
+            } else {
+                normaleSituatie(voertuigenZuidQueue);
             }
         } else {
-            normaleSituatie(voertuigenZuidQueue);
+            System.out.println("Wegdek Zuid is leeg");
         }
     }
 
     private void sensorOost() {
         System.out.println("Sensor Oost wordt geactiveerd");
-        if (!voertuigenOostQueue.isEmpty(voertuigenOostQueue)) {
+        if (!voertuigenOostQueue.isEmpty()) {
             System.out.println("Stoplicht Oost springt op groen");
             normaleSituatie(voertuigenOostQueue);
         } else {
@@ -166,7 +170,7 @@ public class VerkeersSimulatieService {
         if (voertuigenWestQueue.getnItems() > 10) {
             System.out.println("Stoplicht West springt op groen");
             for (int voertuigenIndex = 0; voertuigenIndex < 10; voertuigenIndex++) {
-                if (!voertuigenWestQueue.isEmpty(voertuigenWestQueue)) {
+                if (!voertuigenWestQueue.isEmpty()) {
                     oprijden(voertuigenWestQueue);
                 } else {
                     System.out.println("Wegdek West is leeg");
