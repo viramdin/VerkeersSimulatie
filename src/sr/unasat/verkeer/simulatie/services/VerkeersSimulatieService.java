@@ -16,7 +16,7 @@ public class VerkeersSimulatieService {
     Queue voertuigenOostQueue = new Queue(5);
     Queue voertuigenWestQueue = new Queue(14);
 
-    Stack stack = new Stack(41);
+    Stack stack = new Stack();
 
     public void prioritizeVoertuigen(List<Voertuig> voertuigeNoordList, List<Voertuig> voertuigenZuidList, List<Voertuig> voertuigenOostList, List<Voertuig> voertuigenWestList) {
         for (Voertuig voertuig : voertuigeNoordList) {
